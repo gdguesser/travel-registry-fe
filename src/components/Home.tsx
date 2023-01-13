@@ -1,5 +1,5 @@
 import React from 'react';
-import "../styles/Home.css"
+import "./Home.css"
 
 interface Props {
     // any props you need to pass to the component

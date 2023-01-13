@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import "../styles/Navbar.css"
+import "./Navbar.css"
 
 interface Props {
     // any props you need to pass to the component
@@ -21,7 +21,7 @@ const NavigationBar: React.FC<Props> = () => {
 
     return (
         <nav className="navbar">
-            <Link className="navbar__brand" to="/">Home</Link>
+            <Link className="navbar__brand" to="/">Travel Registry</Link>
             <ul className="navbar__menu">
                 <li className="navbar__menu-item"><Link to="/register-travel">Register Travel</Link></li>
                 <li className="navbar__menu-item"><Link to="/view-travels">View Travels</Link></li>

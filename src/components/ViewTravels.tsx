@@ -12,8 +12,9 @@ const ViewTravels: React.FC = () => {
     const [travels, setTravels] = useState<Travel[]>([]);
 
     useEffect(() => {
-        axios.get<Travel[]>('/api/travels')
+        axios.get<Travel[]>('http://localhost:8080/travels')
             .then(response => {
+                console.log(response.data.map(travel => travel.id));
                 setTravels(response.data);
             })
             .catch(error => {

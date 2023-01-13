@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import "./TravelRegistration.css"
 
 interface Props {
     // any props you need to pass to the component
