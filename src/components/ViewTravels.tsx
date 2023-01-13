@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import "./ViewTravels.css"
+import './ViewTravels.css';
+
+interface Props {}
 
 interface Travel {
     id: number;
@@ -10,13 +12,12 @@ interface Travel {
     end_date: string;
 }
 
-const ViewTravels: React.FC = () => {
+const ViewTravels: React.FC<Props> = () => {
     const [travels, setTravels] = useState<Travel[]>([]);
 
     useEffect(() => {
         axios.get<Travel[]>('http://localhost:8080/travels')
             .then(response => {
-                console.log(response.data.map(travel => travel.id));
                 setTravels(response.data);
             })
             .catch(error => {
@@ -24,29 +25,23 @@ const ViewTravels: React.FC = () => {
             });
     }, []);
 
+    const handleViewDetails = (id: number) => {
+        // Your logic for displaying more details about the travel with the given ID
+        console.log(`View details for travel with ID ${id}`);
+    }
+
     return (
-        <div className='view-travels'>
+        <div className="view-travels-container">
             <h1>View Travels</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Origin</th>
-                        <th>Destination</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {travels.map(travel => (
-                        <tr key={travel.id}>
-                            <td>{travel.origin}</td>
-                            <td>{travel.destination}</td>
-                            <td>{travel.start_date}</td>
-                            <td>{travel.end_date}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            <div className="travels-grid">
+                {travels.map(travel => (
+                    <div key={travel.id} className="travel-box">
+                        <div className="travel-origin">{travel.origin}</div>
+                        <div className="travel-destination">{travel.destination}</div>
+                        <button className="view-details-button" onClick={() => handleViewDetails(travel.id)}>View Details</button>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }

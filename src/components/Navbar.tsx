@@ -9,11 +9,6 @@ interface Props {
 const NavigationBar: React.FC<Props> = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    const handleLogin = () => {
-        // Your login logic here
-        setIsLoggedIn(true);
-    }
-
     const handleLogout = () => {
         // Your logout logic here
         setIsLoggedIn(false);
@@ -21,18 +16,22 @@ const NavigationBar: React.FC<Props> = () => {
 
     return (
         <nav className="navbar">
-            <Link className="navbar__brand" to="/">Travel Registry</Link>
+            <Link to="/" className="navbar__brand">Travel App</Link>
             <ul className="navbar__menu">
-                <li className="navbar__menu-item"><Link to="/register-travel">Register Travel</Link></li>
-                <li className="navbar__menu-item"><Link to="/view-travels">View Travels</Link></li>
+                <li className="navbar__menu-item"><Link to="/" className="nav-link">Home</Link></li>
+                <li className="navbar__menu-item"><Link to="/register-travel" className="nav-link">Register Travel</Link></li>
+                <li className="navbar__menu-item"><Link to="/view-travels" className="nav-link">View Travels</Link></li>
             </ul>
             {isLoggedIn ? (
                 <button onClick={handleLogout}>Logout</button>
             ) : (
-                <button onClick={handleLogin}>Login</button>
+                <Link to="/login" className="navbar__menu-item">
+                    <button>Login</button>
+                </Link>
             )}
         </nav>
     );
+    
 }
 
 export default NavigationBar;

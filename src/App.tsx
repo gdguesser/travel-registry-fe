@@ -4,6 +4,7 @@ import NavigationBar from './components/Navbar';
 import HomePage from './components/Home';
 import RegisterTravel from './components/TravelRegistration';
 import ViewTravels from './components/ViewTravels';
+import Login from './components/Login'
 
 const App: React.FC = () => {
   return (
@@ -13,6 +14,7 @@ const App: React.FC = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/register-travel" element={<RegisterTravel />} />
         <Route path="/view-travels" element={<ViewTravels />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </Router>
   );
