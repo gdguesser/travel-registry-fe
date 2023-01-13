@@ -7,6 +7,7 @@ interface Props {
 }
 
 interface FormData {
+    origin: string;
     destination: string;
     start_date: string;
     end_date: string;
@@ -14,15 +15,25 @@ interface FormData {
 
 const RegisterTravel: React.FC<Props> = () => {
     const [formData, setFormData] = useState<FormData>({
+        origin: '',
         destination: '',
         start_date: '',
         end_date: '',
     });
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        const startDate = new Date(formData.start_date);
+        const endDate = new Date(formData.end_date);
+
+        const startDateIso = startDate.toISOString();
+        const endDateIso = endDate.toISOString();
+
+        formData.start_date = startDateIso;
+        formData.end_date = endDateIso;
+
         event.preventDefault();
         try {
-            await axios.post<FormData>('/api/travels', formData);
+            await axios.post<FormData>('http://localhost:8080/travels', formData);
             alert("Travel registered!");
         } catch (error) {
             console.log(error);
@@ -36,8 +47,17 @@ const RegisterTravel: React.FC<Props> = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className='register-travel' onSubmit={handleSubmit}>
             <h1>Register Travel</h1>
+            <label>
+                Origin:
+                <input
+                    type="text"
+                    name="origin"
+                    value={formData.origin}
+                    onChange={handleInputChange}
+                />
+            </label>
             <label>
                 Destination:
                 <input

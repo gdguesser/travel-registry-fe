@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import "./ViewTravels.css"
 
 interface Travel {
     id: number;
+    origin: string;
     destination: string;
     start_date: string;
     end_date: string;
@@ -23,11 +25,12 @@ const ViewTravels: React.FC = () => {
     }, []);
 
     return (
-        <div>
+        <div className='view-travels'>
             <h1>View Travels</h1>
             <table>
                 <thead>
                     <tr>
+                        <th>Origin</th>
                         <th>Destination</th>
                         <th>Start Date</th>
                         <th>End Date</th>
@@ -36,6 +39,7 @@ const ViewTravels: React.FC = () => {
                 <tbody>
                     {travels.map(travel => (
                         <tr key={travel.id}>
+                            <td>{travel.origin}</td>
                             <td>{travel.destination}</td>
                             <td>{travel.start_date}</td>
                             <td>{travel.end_date}</td>
