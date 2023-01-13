@@ -1,16 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './ViewTravels.css';
+import { Travel } from '../common/types'
 
 interface Props {}
-
-interface Travel {
-    id: number;
-    origin: string;
-    destination: string;
-    start_date: string;
-    end_date: string;
-}
 
 const ViewTravels: React.FC<Props> = () => {
     const [travels, setTravels] = useState<Travel[]>([]);

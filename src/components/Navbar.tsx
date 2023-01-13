@@ -16,7 +16,7 @@ const NavigationBar: React.FC<Props> = () => {
 
     return (
         <nav className="navbar">
-            <Link to="/" className="navbar__brand">Travel App</Link>
+            <Link to="/" className="navbar__brand">Travel Registry</Link>
             <ul className="navbar__menu">
                 <li className="navbar__menu-item"><Link to="/" className="nav-link">Home</Link></li>
                 <li className="navbar__menu-item"><Link to="/register-travel" className="nav-link">Register Travel</Link></li>
